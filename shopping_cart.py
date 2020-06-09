@@ -42,6 +42,7 @@ def to_usd(my_price):
 
 # User Inputs
 
-selected_id = input("Please input a product indentifier: ") #outputs a string
-print(selected_id)
-print(type(selected_id))
+pick_item = input("Please input a product indentifier: ") # output: string
+match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
+match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
+print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
