@@ -37,4 +37,11 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 
-print(products)
+#print(products)
+
+
+# User Inputs
+
+selected_id = input("Please input a product indentifier: ") #outputs a string
+print(selected_id)
+print(type(selected_id))
