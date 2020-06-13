@@ -38,7 +38,7 @@ def to_usd(my_price):
 # TODO: write some Python code here to produce the desired output
 
 #print(products)
-
+total_price = 0
 
 # User Inputs
 while True:
@@ -48,4 +48,10 @@ while True:
     else:
         match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
         match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
+        total_price = total_price + match_item["price"]
         print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+
+# Outputs
+
+
+print("TODAY'S PURCHASE TOTAL: " + str(total_price))
