@@ -39,6 +39,7 @@ def to_usd(my_price):
 
 #print(products)
 total_price = 0
+purchase_ids = []
 
 # User Inputs
 while True:
@@ -46,12 +47,22 @@ while True:
     if pick_item == "DONE":
         break
     else:
-        match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
-        match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
-        total_price = total_price + match_item["price"]
-        print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+        #match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
+        #match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
+        #total_price = total_price + match_item["price"]
+        #print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+        purchase_ids.append(pick_item)
 
 # Outputs
+
+#print(purchase_ids)
+for pick_item in purchase_ids:
+    match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
+    match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
+    total_price = total_price + match_item["price"]
+    print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+
+
 
 
 print("TODAY'S PURCHASE TOTAL: " + str(total_price))
