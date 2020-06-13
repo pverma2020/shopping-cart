@@ -1,6 +1,7 @@
 # shopping_cart.py
 
 import datetime as dt
+tax_rate = 0.0875 #NY Tax Rate = 8.75%
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -37,23 +38,31 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+
 # TODO: write some Python code here to produce the desired output
 
 checkout_time = dt.datetime.now()
-total_price = 0
+subtotal_price = 0
 purchase_ids = []
 
 # User Inputs
 while True:
-    pick_item = input("Please input a product indentifier: ") # output: string
+    pick_item = input("Please input a product indentifier, or DONE if there are no more items: ") # output: string
     if pick_item == "DONE":
         break
     else:
-        #match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
-        #match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
-        #total_price = total_price + match_item["price"]
-        #print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
-        purchase_ids.append(pick_item)
+        try:
+            match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
+            match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
+            #total_price = total_price + match_item["price"]
+            #print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+            purchase_ids.append(pick_item)
+        except IndexError as e: #to address the IndexError for an out of range input
+            print("INVALID PRODUCT IDENTIFIER. PLEASE TRY AGAIN...OR IF THERE ARE NO MORE ITEM, PLEASE ENTER 'DONE'")
+            
+   
+   
+    
 
 # Outputs
 
@@ -71,10 +80,18 @@ print("SELECTED PRODUCTS:")
 for pick_item in purchase_ids:
     match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
     match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
-    total_price = total_price + match_item["price"]
+    subtotal_price = subtotal_price + match_item["price"]
     print("PICKED ITEM: " + match_item["name"] + " (" + to_usd(match_item["price"]) + ")")
 
+tax = subtotal_price * tax_rate
+total_price = subtotal_price + tax
+
+print("---------------------------------")
+print("SUBTOTAL: " + to_usd(subtotal_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total_price))
+print("---------------------------------")
+print("THANKS FOR SHOPPING WITH US, SEE YOU AGAIN SOON!")
+print("---------------------------------")
 
 
-
-print("TODAY'S PURCHASE TOTAL: " + str(total_price))

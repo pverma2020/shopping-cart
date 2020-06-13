@@ -14,5 +14,8 @@ conda create -n shopping-env python=3.7 (this command is only required first tim
 conda activate shopping-env
 
 # Step 3: Run the program
-
+Use the following command to run the script:
 python shopping_cart.py
+
+Enter product identifiers and when you are done, type "DONE."
+When you finished, you must type "DONE" in caps otherwise you will get an error message.
