@@ -1,5 +1,7 @@
 # shopping_cart.py
 
+import datetime as dt
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -37,7 +39,7 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 
-#print(products)
+checkout_time = dt.datetime.now()
 total_price = 0
 purchase_ids = []
 
@@ -56,11 +58,21 @@ while True:
 # Outputs
 
 #print(purchase_ids)
+print("---------------------------------")
+print("YUMMY IN MY TUMMY MARKET")
+print("WWW.YUM-IN-TUM.COM")
+print("---------------------------------")
+print("CHECKOUT AT: " + checkout_time.strftime("%Y-%m-%d %I:%M %p")) # datetime formatting, see: https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+print("---------------------------------")
+
+
+
+print("SELECTED PRODUCTS:")
 for pick_item in purchase_ids:
     match_items = [i for i in products if str(i["id"]) == str(pick_item)] #make sure we are comparing 2 strings
     match_item = match_items[0] #Line above outputs a list, but we only want the first item of the list
     total_price = total_price + match_item["price"]
-    print("PICKED ITEM: " + match_item["name"] + " " + str(match_item["price"]))
+    print("PICKED ITEM: " + match_item["name"] + " (" + to_usd(match_item["price"]) + ")")
 
 
 
